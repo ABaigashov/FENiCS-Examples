@@ -1,27 +1,27 @@
-from fenics import *
+import fenics as fen
 
 # Create mesh and define function space
-mesh = UnitSquareMesh(8, 8)
-V = FunctionSpace(mesh, 'P', 1)
+mesh = fen.UnitSquareMesh(8, 8)
+V = fen.FunctionSpace(mesh, 'P', 1)
 
 # Define boundary condition
-u_D = Expression('1 + x[0]*x[0] + x[1]*x[1]', degree=2)
+u_D = fen.Expression('1 + x[0]*x[0] + x[1]*x[1]', degree=2)
 
 def boundary(x, on_boundary):
 	return on_boundary
 
-bc = DirichletBC(V, u_D, boundary)
+bc = fen.DirichletBC(V, u_D, boundary)
 
 # Define variational problem
-u = TrialFunction(V)
-v = TestFunction(V)
-f = Constant(-6.0)
-a = dot(grad(u), grad(v))*dx
-L = f*v*dx
+u = fen.TrialFunction(V)
+v = fen.TestFunction(V)
+f = fen.Constant(-6.0)
+a = fen.dot(fen.grad(u), fen.grad(v))*fen.dx
+L = f*v*fen.dx
 
 # Compute solution
-u = Function(V)
-solve(a == L, u, bc)
+u = fen.Function(V)
+fen.solve(a == L, u, bc)
 
 
 # #--------------------------Ploting PVD------------------------
@@ -40,22 +40,22 @@ solve(a == L, u, bc)
 
 
 #--------------------------Ploting pylab------------------------
-# get array componets and triangulation :
+#get array componets and triangulation :
 v = u.compute_vertex_values(mesh)
 x = mesh.coordinates()[:,0]
 y = mesh.coordinates()[:,1]
 t = mesh.cells()
 
-from pylab import *
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+import pylab as plb
 
-ax = plt.axes()
+ax = plb.axes()
+cm = plb.get_cmap('viridis')
 
-cm = get_cmap('viridis')
-c = ax.tricontourf(x, y, t, v, 10, cmap = cm)
-p = ax.triplot(x, y, t, '-', color='k', lw=0.2, alpha=0.4)
+ax.tricontourf(x, y, t, v, 10, cmap = cm)
+ax.triplot(x, y, t, '-', color='k', lw=0.2, alpha=0.4)
 
 # Output in the file
-for ext in ["png", "pdf"]:
-    print("Lenear_Poisson.%s" % (ext,))
-    plt.savefig("Lenear_Poisson.%s" % (ext,), bbox_inches="tight")
+print("Lenear_Poisson.pdf")
+plb.savefig("Lenear_Poisson.%s" % "pdf", bbox_inches="tight")
+print("Lenear_Poisson.png")
+plb.savefig("Lenear_Poisson.%s" % "png", bbox_inches="tight")
