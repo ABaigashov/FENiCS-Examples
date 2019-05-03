@@ -11,7 +11,7 @@ def boundary(x, on_boundary):
 	return on_boundary
 
 bc = fen.DirichletBC(V, u_D, boundary)
-  
+
 # Define variational problem
 u = fen.TrialFunction(V)
 v = fen.TestFunction(V)
@@ -56,6 +56,6 @@ ax.triplot(x, y, t, '-', color='k', lw=0.2, alpha=0.4)
 
 # Output in the file
 print("Lenear_Poisson.pdf")
-plb.savefig("Lenear_Poisson.%s" % "pdf", bbox_inches="tight")
+plb.savefig("results/Lenear_Poisson.%s" % "pdf", bbox_inches="tight")
 print("Lenear_Poisson.png")
-plb.savefig("Lenear_Poisson.%s" % "png", bbox_inches="tight")
+plb.savefig("results/Lenear_Poisson.%s" % "png", bbox_inches="tight")
