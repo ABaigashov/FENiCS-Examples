@@ -8,7 +8,7 @@ V = FunctionSpace(mesh, 'P', 1)
 # Define Dirichlet boundary condition
 u_D = Expression('1 + x[0]*x[0] + x[1]*x[1]', degree = 2)
 
-tol = -1e16   
+tol = -1e16
 
 def boundary_D(x, on_boundary):
     if on_boundary:
@@ -31,7 +31,7 @@ f = Constant(-6.0)
 a = dot(grad(u), grad(v))*dx
 L = f*v*dx - g*v*ds
 
-# Compute solution
+# Compute solution bv
 u = Function(V)
 solve(a == L, u, bc)
 
