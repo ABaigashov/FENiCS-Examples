@@ -1,2 +1,3 @@
 from __future__ import print_function
-from fenics import * 
+from fenics import *
+ xc 
