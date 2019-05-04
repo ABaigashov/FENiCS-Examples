@@ -4,7 +4,7 @@ from fenics import *
 # Create mesh and define function space
 mesh = UnitSquareMesh(8, 8)
 V = FunctionSpace(mesh, 'P', 1)
-
+   
 # Define Dirichlet boundary condition
 u_D = Expression('1 + x[0]*x[0] + x[1]*x[1]', degree = 2)
 
@@ -31,7 +31,7 @@ f = Constant(-6.0)
 a = dot(grad(u), grad(v))*dx
 L = f*v*dx - g*v*ds
 
-# Compute solution
+# Compute solution bv
 u = Function(V)
 solve(a == L, u, bc)
 

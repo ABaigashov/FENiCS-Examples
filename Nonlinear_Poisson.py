@@ -1,6 +1,5 @@
 from fenics import *
 import sympy as sym
-
 def q(u):
     "Return nonlinear coefficient"
     return 1 + u**2

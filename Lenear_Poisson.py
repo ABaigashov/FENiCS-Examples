@@ -6,12 +6,12 @@ V = fen.FunctionSpace(mesh, 'P', 1)
 
 # Define boundary condition
 u_D = fen.Expression('1 + x[0]*x[0] + x[1]*x[1]', degree=2)
-
+   
 def boundary(x, on_boundary):
 	return on_boundary
 
 bc = fen.DirichletBC(V, u_D, boundary)
-
+   
 # Define variational problem
 u = fen.TrialFunction(V)
 v = fen.TestFunction(V)
