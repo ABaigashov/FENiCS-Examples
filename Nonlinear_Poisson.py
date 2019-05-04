@@ -1,16 +1,11 @@
-from __future__ import print_function
-
-# Warning: from fenics import * will import both `sym` and
-# `q` from FEniCS. We therefore import FEniCS first and then
-# overwrite these objects.
 from fenics import *
+import sympy as sym
 
 def q(u):
     "Return nonlinear coefficient"
     return 1 + u**2
 
 # Use SymPy to compute f from the manufactured solution u
-import sympy as sym
 x, y = sym.symbols('x[0], x[1]')
 u = 1 + x + 2*y
 f = - sym.diff(q(u)*sym.diff(u, x), x) - sym.diff(q(u)*sym.diff(u, y), y)
@@ -43,25 +38,25 @@ solve(F == 0, u, bc)
 
 
 #--------------------------Ploting pylab------------------------
-# get array componets and triangulation :
+#get array componets and triangulation :
 v = u.compute_vertex_values(mesh)
 x = mesh.coordinates()[:,0]
 y = mesh.coordinates()[:,1]
 t = mesh.cells()
 
-from pylab import *
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+import pylab as plb
 
-ax = plt.axes()
+ax = plb.axes()
+cm = plb.get_cmap('viridis')
 
-cm = get_cmap('viridis')
-c = ax.tricontourf(x, y, t, v, 10, cmap = cm)
-p = ax.triplot(x, y, t, '-', color='k', lw=0.2, alpha=0.4)
+ax.tricontourf(x, y, t, v, 10, cmap = cm)
+ax.triplot(x, y, t, '-', color='k', lw=0.2, alpha=0.4)
 
 # Output in the file
-for ext in ["png", "pdf"]:
-    print("Nonlinear_Poisson.%s" % (ext,))
-    plt.savefig("Nonlinear_Poisson.%s" % (ext,), bbox_inches="tight")
+# print("Lenear_Poisson.pdf")
+# plb.savefig("results/lenear_Poisson.%s" % "pdf", bbox_inches="tight")
+print("Lenear_Poisson.png")
+plb.savefig("results/lenear_Poisson.%s" % "png", bbox_inches="tight")
 
 
 # #--------------------------Ploting PVD------------------------

@@ -55,7 +55,12 @@ ax.tricontourf(x, y, t, v, 10, cmap = cm)
 ax.triplot(x, y, t, '-', color='k', lw=0.2, alpha=0.4)
 
 # Output in the file
-print("Lenear_Poisson.pdf")
-plb.savefig("results/lenear_Poisson.%s" % "pdf", bbox_inches="tight")
+# print("Lenear_Poisson.pdf")
+# plb.savefig("results/lenear_Poisson.%s" % "pdf", bbox_inches="tight")
 print("Lenear_Poisson.png")
 plb.savefig("results/lenear_Poisson.%s" % "png", bbox_inches="tight")
+
+
+fen.plot(u)
+fen.plot(mesh)
+fen.interactive()
