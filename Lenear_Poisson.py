@@ -11,7 +11,7 @@ def boundary(x, on_boundary):
 	return on_boundary
 
 bc = fen.DirichletBC(V, u_D, boundary)
-
+   
 # Define variational problem
 u = fen.TrialFunction(V)
 v = fen.TestFunction(V)
