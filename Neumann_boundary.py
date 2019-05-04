@@ -4,7 +4,7 @@ from fenics import *
 # Create mesh and define function space
 mesh = UnitSquareMesh(8, 8)
 V = FunctionSpace(mesh, 'P', 1)
-
+  
 # Define Dirichlet boundary condition
 u_D = Expression('1 + x[0]*x[0] + x[1]*x[1]', degree = 2)
 
@@ -23,7 +23,7 @@ def boundary_D(x, on_boundary):
 g = Expression('0', degree = 1)
 
 bc = DirichletBC(V, u_D, boundary_D)
- 
+
 # Define variational problem
 u = TrialFunction(V)
 v = TestFunction(V)
