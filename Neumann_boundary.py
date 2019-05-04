@@ -23,7 +23,7 @@ def boundary_D(x, on_boundary):
 g = Expression('0', degree = 1)
 
 bc = DirichletBC(V, u_D, boundary_D)
-
+ 
 # Define variational problem
 u = TrialFunction(V)
 v = TestFunction(V)
