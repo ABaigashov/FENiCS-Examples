@@ -4,7 +4,7 @@ from __future__ import print_function
 # `q` from FEniCS. We therefore import FEniCS first and then
 # overwrite these objects.
 from fenics import *
-
+ 
 def q(u):
     "Return nonlinear coefficient"
     return 1 + u**2
