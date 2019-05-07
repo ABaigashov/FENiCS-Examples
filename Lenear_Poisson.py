@@ -18,7 +18,7 @@ v = fen.TestFunction(V)
 f = fen.Constant(-6.0)
 a = fen.dot(fen.grad(u), fen.grad(v))*fen.dx
 L = f*v*fen.dx
-
+xdvx
 # Compute solution
 u = fen.Function(V)
 fen.solve(a == L, u, bc)
