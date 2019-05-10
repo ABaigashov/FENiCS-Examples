@@ -6,8 +6,9 @@ Created on Fri May 10 13:44:58 2019
 @author: astrobfu
 """
 
-import fenics as fen
-
+from fenics import *
+from mshr import *
+from math import sin, cos, pi
 
 R=10
 
