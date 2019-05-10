@@ -22,7 +22,7 @@ domain = Sphere(Point(0, 0,0), R)
 
 cylinder = Sphere(Point(0, 0,0), b) - Sphere(Point(0, 0,0), a)
 
-domain.set_subdomain(1, cylinder)
+
 
 mesh = generate_mesh(domain, 32)
 
