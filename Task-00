@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri May 10 13:32:08 2019
+
+@author: astrobfu
+"""
+
+from fenics import *
+
+from mshr import *
+
+R=10
+
+b=1
+
+a=0.001
+
+
+
+domain =Circle(Point(0, 0), R)
+
+cylinder = Circle(Point(0, 0), b) - Circle(Point(0, 0), a)
+
+domain.set_subdomain(1, cylinder)
+
+mesh = generate_mesh(domain, 32)
+
+plot(mesh)
