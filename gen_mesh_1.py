@@ -8,7 +8,7 @@ domain =  mshr.Rectangle(fenics.Point(0., 0.), fenics.Point(5., 5.)) \
          - mshr.Circle(fenics.Point(1, 4), .25) \
          + mshr.Circle(fenics.Point(7, 7), 1.25)
 
-mesh = mshr.generate_mesh(domain, 132)
+mesh = mshr.generate_mesh(domain, 32)
 
 V = fenics.FunctionSpace(mesh, 'P', 1)
 
@@ -46,6 +46,9 @@ cm = plb.get_cmap('viridis')
 
 ax.tricontourf(x, y, t, v, 10, cmap = cm)
 ax.triplot(x, y, t, '-', color='k', lw=0.2, alpha=0.4)
+
+plb.ylim(0, 10)
+plb.xlim(0, 10)
 
 # Output in the file
 print("Lenear_Poisson.png")
