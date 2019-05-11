@@ -1,14 +1,6 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 10 13:44:58 2019
-
-@author: astrobfu
-"""
 
 from fenics import *
 from mshr import *
-from math import sin, cos, pi
 
 R=10
 
