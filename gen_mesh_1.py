@@ -29,9 +29,12 @@ L = f*v*fenics.dx
 
 # Compute solution
 u = fenics.Function(V)
-fenics.solve(a == L, u, bc)
+s = fenics.solve(a == L, u, bc)
 
+print(type(s))
+print(type(u))
 
+'''
 #--------------------------Ploting pylab------------------------
 #get array componets and triangulation :
 v = u.compute_vertex_values(mesh)
@@ -53,3 +56,4 @@ plb.xlim(0, 10)
 # Output in the file
 print("Lenear_Poisson.png")
 plb.savefig("results/gen_mesh.%s" % "png", bbox_inches="tight")
+'''
