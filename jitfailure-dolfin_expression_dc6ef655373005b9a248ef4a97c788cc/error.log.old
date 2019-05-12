@@ -1,0 +1,4 @@
+/tmp/tmp3ib9y30w/dolfin_expression_dc6ef655373005b9a248ef4a97c788cc.cpp: In member function ‘virtual void dolfin::dolfin_expression_dc6ef655373005b9a248ef4a97c788cc::eval(Eigen::Ref<Eigen::Matrix<double, -1, 1> >, Eigen::Ref<const Eigen::Matrix<double, -1, 1> >) const’:
+/tmp/tmp3ib9y30w/dolfin_expression_dc6ef655373005b9a248ef4a97c788cc.cpp:61:63: error: ‘Heaviside’ was not declared in this scope
+           values[0] = (1 - x[0]*x[0] + x[1]*x[1] + x[2]*x[2])*Heaviside(1 - x[0]*x[0] + x[1]*x[1] + x[2]*x[2]);
+                                                               ^~~~~~~~~
