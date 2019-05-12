@@ -9,7 +9,7 @@ R0=10
 
 rho0=0.1
 
-domain=Sphere(Point(0,0,0),R)
+domain=Circle(Point(0,0),R)
 
 mesh=generate_mesh(domain, 32)
 
@@ -28,17 +28,28 @@ bc = DirichletBC(V, Constant(0), boundary)
 u = TrialFunction(V)
 v = TestFunction(V)
 
-f = Expression('x[0]*x[0]+x[1]*x[1]+x[2]*x[2]<=100 ? 1 - (x[0]*x[0] + x[1]*x[1] + x[2]*x[2])/100 : 0', degree=3)
+f = Expression('x[0]*x[0]+x[1]*x[1]<=100 ? 1 - (x[0]*x[0] + x[1]*x[1])/100 : 0', degree=3)
 
-a = dot(grad(u), grad(v))*dx
-L = f*v*dx
+f1=Expression('1/(x[0]*x[0]+x[1]*x[1]+1)', degree=3)
+
+f2=Expression('x[0]',degree=3)
+
+b=u.dx(1)*v.dx(1)*dx+u.dx(0)*v.dx(0)*dx
+
+
+a = inner(grad(u), grad(v))*f2*dx
+
+L=f*v*dx
+
 
 # Compute solution
 u = Function(V)
-solve(a == L, u, bc)
+solve(b == L, u, bc)
 
 # Save to file and plot
 File("classic.pvd") << u
+
+
 
 '''
 V = FunctionSpace(mesh, 'P', 2)
@@ -46,7 +57,7 @@ V = FunctionSpace(mesh, 'P', 2)
 bc = DirichletBC(V, Constant(0), 'on_boundary')
 
 
-rho=rho0*(1-x[0]**2-x[1]**2-x[2]**2)*np.heaviside(1-x[0]**2-x[1]**2-x[2]**2,1)
+
 
 nu=TrialFunction(V)
 

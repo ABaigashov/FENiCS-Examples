@@ -1,4 +1,0 @@
-/tmp/tmp72oih0ng/dolfin_expression_4ccbe1296da3adb1afdf669af93ce24b.cpp: In member function ‘virtual void dolfin::dolfin_expression_4ccbe1296da3adb1afdf669af93ce24b::eval(Eigen::Ref<Eigen::Matrix<double, -1, 1> >, Eigen::Ref<const Eigen::Matrix<double, -1, 1> >) const’:
-/tmp/tmp72oih0ng/dolfin_expression_4ccbe1296da3adb1afdf669af93ce24b.cpp:61:63: error: ‘np’ was not declared in this scope
-           values[0] = (1 - x[0]*x[0] + x[1]*x[1] + x[2]*x[2])*np.heaviside(1-x[0]*x[0]-x[1]*x[1]-x[2]*x[2]);
-                                                               ^~

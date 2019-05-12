@@ -9,11 +9,9 @@ R0=10
 
 rho0=0.1
 
-domain=Sphere(Point(0,0,0),R)
+mesh=UnitSquareMesh(10, 10)
 
-mesh=generate_mesh(domain, 32)
-
-plot(mesh)
+u_d=Expression('x[0]',degree=3)
 
 V = FunctionSpace(mesh, 'P', 1)
 
@@ -22,23 +20,33 @@ V = FunctionSpace(mesh, 'P', 1)
 def boundary(x, on_boundary):
 	return on_boundary
 
-bc = DirichletBC(V, Constant(0), boundary)
+bc = DirichletBC(V, u_d, boundary)
 
 # Define variational problem
 u = TrialFunction(V)
 v = TestFunction(V)
 
-f = Expression('x[0]*x[0]+x[1]*x[1]+x[2]*x[2]<=100 ? 1 - (x[0]*x[0] + x[1]*x[1] + x[2]*x[2])/100 : 0', degree=3)
+f = Expression('x[0]*x[0]<=100 ? 1 - (x[0]*x[0])/100 : 0', degree=3)
 
-a = dot(grad(u), grad(v))*dx
-L = f*v*dx
+f=Constant(0)
+
+f1=Expression('1/(x[0]+1)', degree=3)
+
+f2=Expression('x[0]',degree=3)
+
+b=f1*u.dx(1)*f1*v.dx(1)*dx*f2+u.dx(0)*v.dx(0)*dx*f2
+
+L=f*v*dx
+
 
 # Compute solution
 u = Function(V)
-solve(a == L, u, bc)
+solve(b == L, u, bc)
 
 # Save to file and plot
 File("classic.pvd") << u
+
+
 
 '''
 V = FunctionSpace(mesh, 'P', 2)
@@ -46,7 +54,7 @@ V = FunctionSpace(mesh, 'P', 2)
 bc = DirichletBC(V, Constant(0), 'on_boundary')
 
 
-rho=rho0*(1-x[0]**2-x[1]**2-x[2]**2)*np.heaviside(1-x[0]**2-x[1]**2-x[2]**2,1)
+
 
 nu=TrialFunction(V)
 
