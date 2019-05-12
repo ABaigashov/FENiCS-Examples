@@ -18,17 +18,17 @@ plot(mesh)
 V = FunctionSpace(mesh, 'P', 1)
 
 # Define boundary condition
-u_D = Expression('1 + x[0]*x[0] + x[1]*x[1] + x[2]', degree=2)
+u_D = Expression('(1 - x[0]*x[0] + x[1]*x[1] + x[2]*x[2])*np.heaviside(1-x[0]*x[0]-x[1]*x[1]-x[2]*x[2])', degree=2)
 
 def boundary(x, on_boundary):
 	return on_boundary
 
-bc = DirichletBC(V, u_D, boundary)
+bc = DirichletBC(V, Constant(0), boundary)
 
 # Define variational problem
 u = TrialFunction(V)
 v = TestFunction(V)
-f = Constant(-6.0)
+f = Expression('(1 - x[0]*x[0] + x[1]*x[1] + x[2]*x[2])*np.heaviside(1-x[0]*x[0]-x[1]*x[1]-x[2]*x[2],1)', degree=3)
 a = dot(grad(u), grad(v))*dx
 L = f*v*dx
 
