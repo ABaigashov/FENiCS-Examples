@@ -3,9 +3,9 @@ from fenics import *
 from mshr import *
 import numpy as np
 
-R=50
+R=1
 
-R0=10
+R0=0.1
 
 rho0=0.1
 
@@ -28,50 +28,15 @@ bc = DirichletBC(V, Constant(0), boundary)
 u = TrialFunction(V)
 v = TestFunction(V)
 
-f = Expression('x[0]*x[0]+x[1]*x[1]<=100 ? 1 - (x[0]*x[0] + x[1]*x[1])/100 : 0', degree=3)
-
-f1=Expression('1/(x[0]*x[0]+x[1]*x[1]+1)', degree=3)
-
-f2=Expression('x[0]',degree=3)
+f = Expression('x[0]*x[0]+x[1]*x[1]<=0.01 ? 1 : 0', degree=2)
 
 b=u.dx(1)*v.dx(1)*dx+u.dx(0)*v.dx(0)*dx
 
-
-a = inner(grad(u), grad(v))*f2*dx
-
 L=f*v*dx
-
 
 # Compute solution
 u = Function(V)
 solve(b == L, u, bc)
 
 # Save to file and plot
-File("classic.pvd") << u
-
-
-
-'''
-V = FunctionSpace(mesh, 'P', 2)
-
-bc = DirichletBC(V, Constant(0), 'on_boundary')
-
-
-
-
-nu=TrialFunction(V)
-
-v=TestFunction(V)
-
-a=dot(grad(nu), grad(v))*dx
-
-L=rho*v*dx
-
-nu=Function(V)
-
-solve(a == L, nu, bc)
-
-plot(nu)
-
-#plot(mesh)
-'''
+File("Solution-1.pvd") << u
