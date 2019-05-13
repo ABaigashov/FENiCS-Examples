@@ -38,5 +38,11 @@ L=f*v*dx
 u = Function(V)
 solve(b == L, u, bc)
 
+#задание координат точки
+p = Point(0.0,0)
+
+#вывод значения решения в точке
+print(u(p.x(), p.y()))
+
 # Save to file and plot
 File("Solution-1.pvd") << u
