@@ -11,11 +11,12 @@ rho0=0.1
 
 tol=1E-14
 
-mesh=RectangleMesh(Point(0,0), Point(1, 6.28), 50, 50, 'right/left')
+#mesh=RectangleMesh(Point(0,0), Point(1, np.pi*2), 50, 50, 'right/left')
+domain=Rectangle(Point(0,0), Point(1, np.pi*2))
+
+mesh=generate_mesh(domain, 32)
 
 u_R=Constant(0)
-
-u_L=Constant(-2)
 
 g=Constant(0.0)
 
