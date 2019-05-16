@@ -1,5 +1,6 @@
 from fenics import *
 import sympy as sym
+import mshr
 
 def q(u):
     "Return nonlinear coefficient"
@@ -8,7 +9,7 @@ def q(u):
 # Use SymPy to compute f from the manufactured solution u
 x, y = sym.symbols('x[0], x[1]')
 u = 1 + x + 2*y
-f = - sym.diff(q(u)*sym.diff(u, x), x) - sym.diff(q(u)*sym.diff(u, y), y)
+f = - sym.diff(q(u)*sym.diff(u, x), x)*sym.diff(q(u)*sym.diff(u, y), y)
 f = sym.simplify(f)
 u_code = sym.printing.ccode(u)
 f_code = sym.printing.ccode(f)
@@ -16,7 +17,9 @@ print("f = ", f_code)
 print("u = ", u_code)
 
 # Create mesh and define function space
-mesh = UnitSquareMesh(8, 8)
+domain =  mshr.Rectangle(Point(0., 0.), Point(8., 8.))
+mesh = mshr.generate_mesh(domain, 32)
+
 V = FunctionSpace(mesh, 'P', 1)
 
 # Define boundary condition
@@ -56,7 +59,7 @@ ax.triplot(x, y, t, '-', color='k', lw=0.2, alpha=0.4)
 # print("Lenear_Poisson.pdf")
 # plb.savefig("results/lenear_Poisson.%s" % "pdf", bbox_inches="tight")
 print("Lenear_Poisson.png")
-plb.savefig("results/lenear_Poisson.%s" % "png", bbox_inches="tight")
+plb.savefig("results/nonlenear_Poisson.%s" % "png", bbox_inches="tight")
 
 
 # #--------------------------Ploting PVD------------------------
