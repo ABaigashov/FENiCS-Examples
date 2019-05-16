@@ -31,8 +31,6 @@ L = f*v*fenics.dx
 u = fenics.Function(V)
 s = fenics.solve(a == L, u, bc)
 
-
-
 #--------------------------Ploting pylab------------------------
 #get array componets and triangulation :
 v = u.compute_vertex_values(mesh)
@@ -54,3 +52,13 @@ plb.xlim(0, 5)
 # Output in the file
 print("Lenear_Poisson.png")
 plb.savefig("results/gen_mesh.%s" % "png", bbox_inches="tight")
+
+
+# #--------------------------Ploting PVD------------------------
+# #Plotting the solution using the plot command
+# plot(u)
+# plot(mesh)
+#
+# #Save solution to file in VTK format
+# vtkfile = File('The heat equation/The heat equation.pvd')
+# vtkfile << u
