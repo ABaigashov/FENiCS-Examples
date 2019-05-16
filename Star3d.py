@@ -38,7 +38,7 @@ u = Function(V)
 solve(a == L, u, bc)
 
 # Save to file and plot
-File("classic.pvd") << u
+File("results/classic.pvd") << u
 
 '''
 V = FunctionSpace(mesh, 'P', 2)

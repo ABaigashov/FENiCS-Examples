@@ -74,8 +74,8 @@ B = project(as_vector((A_z.dx(1), -A_z.dx(0))), W)
 plot(A_z)
 plot(B)
 # Save solution to file
-vtkfile_A_z = File('magnetostatics/potential.pvd')
-vtkfile_B = File('magnetostatics/field.pvd')
+vtkfile_A_z = File('results/potential.pvd')
+vtkfile_B = File('results/field.pvd')
 vtkfile_A_z << A_z
 vtkfile_B << B
 # Hold plot

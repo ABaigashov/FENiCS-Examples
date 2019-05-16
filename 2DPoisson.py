@@ -45,4 +45,4 @@ p = Point(0.5,0)
 print(u(p.x(), p.y()))
 
 # Save to file and plot
-File("Solution-1.pvd") << u
+File("results/Solution-1.pvd") << u
