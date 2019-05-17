@@ -1,35 +1,20 @@
 import fenics
 import mshr
 
-R=10
-
+# determination of the domain
 domain =  mshr.Rectangle(fenics.Point(0., 0.), fenics.Point(5., 5.)) \
          - mshr.Rectangle(fenics.Point(2., 1.25), fenics.Point(3., 1.75)) \
-         - mshr.Circle(fenics.Point(1, 4), .25) #\
-         #+ mshr.Circle(fenics.Point(7, 7), 1.25)
+         - mshr.Circle(fenics.Point(1, 4), .25) \
+         + mshr.Circle(fenics.Point(4, 2), 1.25)
 
-mesh = mshr.generate_mesh(domain, 164)
-#
+# generate mesh and determination of the Function Space
+mesh = mshr.generate_mesh(domain, 32)
+
 V = fenics.FunctionSpace(mesh, 'P', 1)
 
-# Define boundary condition
-u_D = fenics.Expression('1 + x[0]*x[0] + x[1]*x[1]', degree=2)
-
-def boundary(x, on_boundary):
-	return on_boundary
-
-bc = fenics.DirichletBC(V, u_D, boundary)
-
-# # Define variational problem
-u = fenics.TrialFunction(V)
-v = fenics.TestFunction(V)
-f = fenics.Constant(-6.0)
-a = fenics.dot(fenics.grad(u), fenics.grad(v))*fenics.dx
-L = f*v*fenics.dx
-
-# Compute solution
+# determination element of the Function Space
 u = fenics.Function(V)
-s = fenics.solve(a == L, u, bc)
+
 
 #--------------------------Ploting pylab------------------------
 #get array componets and triangulation :
@@ -50,7 +35,7 @@ plb.ylim(0, 5)
 plb.xlim(0, 5)
 
 # Output in the file
-print("Lenear_Poisson.png")
+print("gen_mesh.png obtained")
 plb.savefig("results/gen_mesh.%s" % "png", bbox_inches="tight")
 
 
