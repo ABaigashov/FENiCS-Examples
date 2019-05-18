@@ -16,9 +16,11 @@ bc = fen.DirichletBC(V, u_D, boundary)
 # Define variational problem
 u = fen.TrialFunction(V)
 v = fen.TestFunction(V)
-spl = '0, 100, 300, 400, 500, 500, 900, 100'
-fun = fen.Expression(spl, degree=2)
+ox = '5, 10, 3, 1, 2, 4, 6, 7, 1, 6, 5'
+
+fun = fen.Expression(ox, degree=2)
 f = fen.interpolate(fun, V)
+
 a = fen.dot(fen.grad(u), fen.grad(v))*fen.dx
 L = f*v*fen.dx
 
@@ -52,9 +54,9 @@ t = mesh.cells()
 import pylab as plb
 import matplotlib.pyplot as plt
 
-xiewfcj = np.arange(0, 10, 0.01)
-print(f(1))
-# plt.plot()
+#xiewfcj = np.arange(0, 10, 0.01)
+#print(f(1))
+plt.plot(f)
 
 ax = plb.axes()
 cm = plb.get_cmap('viridis')
@@ -66,4 +68,4 @@ ax.triplot(x, y, t, '-', color='k', lw=0.2, alpha=0.4)
 # print("Lenear_Poisson.pdf")
 # plb.savefig("results/lenear_Poisson.%s" % "pdf", bbox_inches="tight")
 print("lenear_Poisson.png obtained")
-plb.savefig("results/lenear_Poisson.%s" % "png", bbox_inches="tight")
+plb.savefig("results/lenear_Poisson1.%s" % "png", bbox_inches="tight")
