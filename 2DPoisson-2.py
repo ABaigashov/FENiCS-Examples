@@ -39,29 +39,21 @@ bc_R = DirichletBC(V, u_R, boundary_R)
 bcs=[bc_R]
 
 # Define variational problem
-u = TrialFunction(V)
+u = Function(V)
 v = TestFunction(V)
 
 f = Expression('x[0]*x[0]<=0.01 ? 1 : 0', degree=2)
 
-f1=Expression('1/(x[0]+0.00001)', degree=2)
+f1=Expression('1/(x[0]+0.0001)', degree=2)
 
 f2=Expression('x[0]',degree=2)
 
-b=f2*f1*f1*u.dx(1)*v.dx(1)*dx+f2*u.dx(0)*v.dx(0)*dx
+F=f2*f1*f1*u.dx(1)*v.dx(1)*dx+f2*u.dx(0)*v.dx(0)*dx-f2*f*v*dx+g*v*ds+f2*v*u.dx(0)*u.dx(0)*dx
 
-L=f2*f*v*dx-g*v*ds
-
-
-# Compute solution
-u = Function(V)
-
-
-
-solve(b == L, u, bcs)
+solve(F == 0, u, bcs)
 
 #задание координат точки
-p = Point(0.5,0)
+p = Point(0.0,0)
 
 #вывод значения решения в точке
 print(u(p.x(), p.y()))
