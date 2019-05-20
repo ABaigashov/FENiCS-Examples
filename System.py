@@ -41,7 +41,7 @@ bc_R = DirichletBC(V, u_R, boundary_R)
 
 bcs=[bc_R]
 
-f = Expression('x[0]*x[0]<=1 ? 1 : 0', degree=2)
+f = Expression('x[0]*x[0]<=1 ? 0.1 : 0', degree=2)
 
 f1=Expression('1/(x[0])', degree=2)
 
@@ -50,7 +50,9 @@ f2=Expression('x[0]',degree=2)
 f3=Expression('x[0]*x[0]*sin(x[1])',degree=2)
 
 F=f2*u_1.dx(0)*v_1.dx(0)*dx+f2*f1*f1*u_1.dx(1)*v_1.dx(1)*dx \
++f2*v_1*u_1.dx(0)*u_1.dx(0)*dx \
 +f3*u_2.dx(0)*v_2.dx(0)*dx+f3*f1*f1*u_2.dx(1)*v_2.dx(1)*dx \
++f3*v_2*u_1.dx(0)*u_2.dx(0)*dx \
 -f2*f*v_1*dx-f3*f*v_2*dx
 
 solve(F == 0, u, bcs)
