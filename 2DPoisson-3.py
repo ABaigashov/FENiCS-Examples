@@ -12,9 +12,9 @@ rho0=0.1
 tol=1E-14
 
 #mesh=RectangleMesh(Point(0,0), Point(1, np.pi*2), 50, 50, 'right/left')
-domain=Rectangle(Point(0.001,0), Point(1, np.pi*2))
+domain=Rectangle(Point(0.0001,0), Point(1, np.pi))
 
-mesh=generate_mesh(domain, 32)
+mesh=generate_mesh(domain, 64)
 
 u_R=Constant(0)
 
@@ -42,18 +42,20 @@ bcs=[bc_R]
 u = Function(V)
 v = TestFunction(V)
 
-f = Expression('x[0]*x[0]<=0.01 ? 1 : 0', degree=2)
+f = Expression('x[0]*x[0]<=1 ? 1 : 0', degree=2)
 
 f1=Expression('1/(x[0])', degree=2)
 
-f2=Expression('x[0]',degree=2)
+f2=Expression('x[0]*x[0]*sin(x[1])',degree=2)
 
-F=f2*f1*f1*u.dx(1)*v.dx(1)*dx+f2*u.dx(0)*v.dx(0)*dx-f2*f*v*dx+g*v*ds+f2*v*u.dx(0)*u.dx(0)*dx
+f3=Expression('x[0]',degree=2)
+
+F=f3*f1*f1*u.dx(1)*v.dx(1)*dx+f3*u.dx(0)*v.dx(0)*dx-f3*f*v*dx+g*v*ds
 
 solve(F == 0, u, bcs)
 
 #задание координат точки
-p = Point(0.0,0)
+p = Point(0.001,0)
 
 #вывод значения решения в точке
 print(u(p.x(), p.y()))
