@@ -42,15 +42,15 @@ bcs=[bc_R]
 u = Function(V)
 v = TestFunction(V)
 
-f = Expression('x[0]*x[0]<=1 ? 1 : 0', degree=2)
+f = Expression('x[0]*x[0]<=0.25 ? 10: 0', degree=2)
 
 f1=Expression('1/(x[0])', degree=2)
 
-f2=Expression('x[0]*x[0]*sin(x[1])',degree=2)
+f2=Expression('x[0]*x[0]*x[0]',degree=2)
 
 f3=Expression('x[0]',degree=2)
 
-F=f3*f1*f1*u.dx(1)*v.dx(1)*dx+f3*u.dx(0)*v.dx(0)*dx-f3*f*v*dx+g*v*ds
+F=f2*f1*f1*u.dx(1)*v.dx(1)*dx+f2*u.dx(0)*v.dx(0)*dx-f2*f*v*dx+g*v*ds
 
 solve(F == 0, u, bcs)
 
