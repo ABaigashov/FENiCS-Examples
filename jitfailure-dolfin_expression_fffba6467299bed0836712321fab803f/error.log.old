@@ -1,0 +1,11 @@
+/tmp/tmpphsdxng6/dolfin_expression_fffba6467299bed0836712321fab803f.cpp: In member function ‘virtual void dolfin::dolfin_expression_fffba6467299bed0836712321fab803f::eval(Eigen::Ref<Eigen::Matrix<double, -1, 1> >, Eigen::Ref<const Eigen::Matrix<double, -1, 1> >) const’:
+/tmp/tmpphsdxng6/dolfin_expression_fffba6467299bed0836712321fab803f.cpp:61:34: error: ‘R1’ was not declared in this scope
+           values[0] = x[0]*x[0]<=R1 ? -rho0*(R1-x[0]*x[0]) : 0;
+                                  ^~
+/tmp/tmpphsdxng6/dolfin_expression_fffba6467299bed0836712321fab803f.cpp:61:34: note: suggested alternative: ‘y1’
+           values[0] = x[0]*x[0]<=R1 ? -rho0*(R1-x[0]*x[0]) : 0;
+                                  ^~
+                                  y1
+/tmp/tmpphsdxng6/dolfin_expression_fffba6467299bed0836712321fab803f.cpp:61:40: error: ‘rho0’ was not declared in this scope
+           values[0] = x[0]*x[0]<=R1 ? -rho0*(R1-x[0]*x[0]) : 0;
+                                        ^~~~
