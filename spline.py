@@ -1,41 +1,26 @@
-from scipy.interpolate import splev, splrep, InterpolatedUnivariateSpline, interp1d
-import sympy as sym
+import scipy as sp
 import matplotlib.pyplot as plt
-import numpy as np
+import sympy as sym
+def mnkGP(x,y):
+              d=2 # степень полинома
+              fp, residuals, rank, sv, rcond = sp.polyfit(x, y, d, full=True) # Модель
+              f = sp.poly1d(fp) # аппроксимирующая функция
+              # print('Коэффициент -- a %s  '%round(fp[0],4))
+              # print('Коэффициент-- b %s  '%round(fp[1],4))
+              # print('Коэффициент -- c %s  '%round(fp[2],4))
+              y1=[fp[0]*x[i]**2+fp[1]*x[i]+fp[2] for i in range(0,len(x))] # значения функции a*x**2+b*x+c
+              so=round(sum([abs(y[i]-y1[i]) for i in range(0,len(x))])/(len(x)*sum(y))*100,4) # средняя ошибка
+              # print('Average quadratic deviation '+str(so))
+              fx = sp.linspace(x[0], x[-1] + 1, len(x)) # можно установить вместо len(x) большее число для интерполяции
+              # plt.plot(x, y, 'o', label='Original data', markersize=10)
+              # plt.plot(fx, f(fx), linewidth=2)
+              # plt.grid(True)
+              # plt.show()
 
+x=[10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 66, 70, 74, 78, 82, 86]
+y=[0.1, 0.0714, 0.0556, 0.0455, 0.0385, 0.0333, 0.0294, 0.0263, 0.0238, 0.0217,
+   0.02, 0.0185, 0.0172, 0.0161, 0.0152, 0.0143, 0.0135, 0.0128, 0.0122,
+   0.0116] # данные для проверки по функции y=1/x
 
-x_points = [0, 0.3, 0.4, 0.1, 0.6, 0.7]
-y_points = [1., 2., 5., 10., 99., 88]
-x = np.linspace(0, 10, num=11, endpoint=True)
-y = np.cos(-x**2/9.0)
-f = interp1d(x, y)
-f2 = interp1d(x, y, kind='cubic')
-
-xnew = np.linspace(0, 10, num=41, endpoint=True)
-
-print(f(xnew))
-
-plt.plot(x, y, 'o', xnew, f(xnew), '-', xnew, f2(xnew), '--')
-plt.legend(['data', 'linear', 'cubic'], loc='best')
-plt.show()
-
-
-# x = sym.symbols('x[0]')
-# f = - sym.diff(u*sym.diff(u, x), x)
-#u_code = sym.printing.ccode(u)
-
-
-
-# import sympy as sym
-#
-# # Use SymPy to compute f from the manufactured solution u
-# x = sym.symbols('x[0]')
-# u = 1 + x**2
-# f = - sym.diff(u*sym.diff(u, x), x)
-# print("f = ", f)
-#
-# f = sym.simplify(f)
-# print("f = ", f)
-#
-# f_code = sym.printing.ccode(f)
-# print("f = ", f_code)
+#f_code = sym.printing.ccode(mnkGP(x,y))
+print(mnkGP(x,y))
