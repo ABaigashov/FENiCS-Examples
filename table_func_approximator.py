@@ -62,5 +62,5 @@ def approximator(f):
 
     return f_code
 
-# f = open('table_func.txt', 'r')
-# print(approximator(f))
+f = open('table_func.txt', 'r')
+print(approximator(f))
