@@ -1,4 +1,4 @@
-from table_func_approximator import approximator
+from table_func_approximator_Lagrange import approximator
 from fenics import *
 import sympy as sym
 import mshr
