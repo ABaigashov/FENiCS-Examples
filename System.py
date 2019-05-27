@@ -120,22 +120,22 @@ G.close()
 
 fig=plt.figure(figsize=(8,6), facecolor='pink', frameon=True)
 plt.plot(data_x,data_y1)
-plt.savefig('Profile1.png')
+plt.savefig('results/Profile1.png')
 plt.show()
 
 fig=plt.figure(figsize=(8,6), facecolor='pink', frameon=True)
 plt.plot(data_x,data_y2)
-plt.savefig('Profile2.png')
+plt.savefig('results/Profile2.png')
 plt.show()
 
 fig=plt.figure(figsize=(8,6), facecolor='pink', frameon=True)
 plt.plot(data_x,data_y1)
-plt.savefig('Profile1.png')
+plt.savefig('results/Profile1.png')
 plt.show()
 
 fig=plt.figure(figsize=(8,6), facecolor='pink', frameon=True)
 plt.plot(data_x,data_y3)
-plt.savefig('Profile3.png')
+plt.savefig('results/Profile3.png')
 plt.show()
 
 
