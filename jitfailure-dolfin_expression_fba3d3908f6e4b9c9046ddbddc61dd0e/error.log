@@ -1,0 +1,73 @@
+/tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp: In member function ‘virtual void dolfin::dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e::eval(Eigen::Ref<Eigen::Matrix<double, -1, 1> >, Eigen::Ref<const Eigen::Matrix<double, -1, 1> >) const’:
+/tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:61:52: error: too few arguments to function ‘void dolfin::log(int, std::__cxx11::string, ...)’
+           values[0] = -11064743.085833*log(x[0] + 1) + 424709735.989969*log(x[0] + 2) - 4462981230.39034*log(x[0] + 3) + 20408042074.7581*log(x[0] + 4) - 47758923525.7362*log(x[0] + 5) + 59868038084.6838*log(x[0] + 6) - 38271647290.8097*log(x[0] + 7) + 9803704759.98828*log(x[0] + 8);
+                                                    ^
+In file included from /usr/local/include/dolfin/common/Array.h:32:0,
+                 from /usr/local/include/dolfin/function/Expression.h:27,
+                 from /tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:13:
+/usr/local/include/dolfin/log/log.h:103:8: note: declared here
+   void log(int debug_level, std::string msg, ...);
+        ^~~
+/tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:61:85: error: too few arguments to function ‘void dolfin::log(int, std::__cxx11::string, ...)’
+           values[0] = -11064743.085833*log(x[0] + 1) + 424709735.989969*log(x[0] + 2) - 4462981230.39034*log(x[0] + 3) + 20408042074.7581*log(x[0] + 4) - 47758923525.7362*log(x[0] + 5) + 59868038084.6838*log(x[0] + 6) - 38271647290.8097*log(x[0] + 7) + 9803704759.98828*log(x[0] + 8);
+                                                                                     ^
+In file included from /usr/local/include/dolfin/common/Array.h:32:0,
+                 from /usr/local/include/dolfin/function/Expression.h:27,
+                 from /tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:13:
+/usr/local/include/dolfin/log/log.h:103:8: note: declared here
+   void log(int debug_level, std::string msg, ...);
+        ^~~
+/tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:61:118: error: too few arguments to function ‘void dolfin::log(int, std::__cxx11::string, ...)’
+           values[0] = -11064743.085833*log(x[0] + 1) + 424709735.989969*log(x[0] + 2) - 4462981230.39034*log(x[0] + 3) + 20408042074.7581*log(x[0] + 4) - 47758923525.7362*log(x[0] + 5) + 59868038084.6838*log(x[0] + 6) - 38271647290.8097*log(x[0] + 7) + 9803704759.98828*log(x[0] + 8);
+                                                                                                                      ^
+In file included from /usr/local/include/dolfin/common/Array.h:32:0,
+                 from /usr/local/include/dolfin/function/Expression.h:27,
+                 from /tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:13:
+/usr/local/include/dolfin/log/log.h:103:8: note: declared here
+   void log(int debug_level, std::string msg, ...);
+        ^~~
+/tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:61:151: error: too few arguments to function ‘void dolfin::log(int, std::__cxx11::string, ...)’
+           values[0] = -11064743.085833*log(x[0] + 1) + 424709735.989969*log(x[0] + 2) - 4462981230.39034*log(x[0] + 3) + 20408042074.7581*log(x[0] + 4) - 47758923525.7362*log(x[0] + 5) + 59868038084.6838*log(x[0] + 6) - 38271647290.8097*log(x[0] + 7) + 9803704759.98828*log(x[0] + 8);
+                                                                                                                                                       ^
+In file included from /usr/local/include/dolfin/common/Array.h:32:0,
+                 from /usr/local/include/dolfin/function/Expression.h:27,
+                 from /tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:13:
+/usr/local/include/dolfin/log/log.h:103:8: note: declared here
+   void log(int debug_level, std::string msg, ...);
+        ^~~
+/tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:61:184: error: too few arguments to function ‘void dolfin::log(int, std::__cxx11::string, ...)’
+           values[0] = -11064743.085833*log(x[0] + 1) + 424709735.989969*log(x[0] + 2) - 4462981230.39034*log(x[0] + 3) + 20408042074.7581*log(x[0] + 4) - 47758923525.7362*log(x[0] + 5) + 59868038084.6838*log(x[0] + 6) - 38271647290.8097*log(x[0] + 7) + 9803704759.98828*log(x[0] + 8);
+                                                                                                                                                                                        ^
+In file included from /usr/local/include/dolfin/common/Array.h:32:0,
+                 from /usr/local/include/dolfin/function/Expression.h:27,
+                 from /tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:13:
+/usr/local/include/dolfin/log/log.h:103:8: note: declared here
+   void log(int debug_level, std::string msg, ...);
+        ^~~
+/tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:61:217: error: too few arguments to function ‘void dolfin::log(int, std::__cxx11::string, ...)’
+           values[0] = -11064743.085833*log(x[0] + 1) + 424709735.989969*log(x[0] + 2) - 4462981230.39034*log(x[0] + 3) + 20408042074.7581*log(x[0] + 4) - 47758923525.7362*log(x[0] + 5) + 59868038084.6838*log(x[0] + 6) - 38271647290.8097*log(x[0] + 7) + 9803704759.98828*log(x[0] + 8);
+                                                                                                                                                                                                                         ^
+In file included from /usr/local/include/dolfin/common/Array.h:32:0,
+                 from /usr/local/include/dolfin/function/Expression.h:27,
+                 from /tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:13:
+/usr/local/include/dolfin/log/log.h:103:8: note: declared here
+   void log(int debug_level, std::string msg, ...);
+        ^~~
+/tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:61:250: error: too few arguments to function ‘void dolfin::log(int, std::__cxx11::string, ...)’
+           values[0] = -11064743.085833*log(x[0] + 1) + 424709735.989969*log(x[0] + 2) - 4462981230.39034*log(x[0] + 3) + 20408042074.7581*log(x[0] + 4) - 47758923525.7362*log(x[0] + 5) + 59868038084.6838*log(x[0] + 6) - 38271647290.8097*log(x[0] + 7) + 9803704759.98828*log(x[0] + 8);
+                                                                                                                                                                                                                                                          ^
+In file included from /usr/local/include/dolfin/common/Array.h:32:0,
+                 from /usr/local/include/dolfin/function/Expression.h:27,
+                 from /tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:13:
+/usr/local/include/dolfin/log/log.h:103:8: note: declared here
+   void log(int debug_level, std::string msg, ...);
+        ^~~
+/tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:61:283: error: too few arguments to function ‘void dolfin::log(int, std::__cxx11::string, ...)’
+           values[0] = -11064743.085833*log(x[0] + 1) + 424709735.989969*log(x[0] + 2) - 4462981230.39034*log(x[0] + 3) + 20408042074.7581*log(x[0] + 4) - 47758923525.7362*log(x[0] + 5) + 59868038084.6838*log(x[0] + 6) - 38271647290.8097*log(x[0] + 7) + 9803704759.98828*log(x[0] + 8);
+                                                                                                                                                                                                                                                                                           ^
+In file included from /usr/local/include/dolfin/common/Array.h:32:0,
+                 from /usr/local/include/dolfin/function/Expression.h:27,
+                 from /tmp/tmpyq1t7sht/dolfin_expression_fba3d3908f6e4b9c9046ddbddc61dd0e.cpp:13:
+/usr/local/include/dolfin/log/log.h:103:8: note: declared here
+   void log(int debug_level, std::string msg, ...);
+        ^~~
