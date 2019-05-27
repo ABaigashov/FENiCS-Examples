@@ -38,5 +38,5 @@ def approximator(f):
 
     return f_code
 
-#
-# print(approximator(f))
+f = open('data/table_func.txt', 'r')
+print(approximator(f))

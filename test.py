@@ -3,7 +3,7 @@ from fenics import *
 import sympy as sym
 import mshr
 
-f = open('table_func.txt', 'r')
+f = open('data/table_func.txt', 'r')
 
 f_code = approximator(f)
 
