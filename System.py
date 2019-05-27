@@ -5,6 +5,7 @@ from mshr import *
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy as sym
+import math
 
 R0=0.0001
 
@@ -94,9 +95,10 @@ data_y2=[]
 
 data_y3=[]
 
+G = open('H.txt', 'w')
 
 for i in range (100):
-	x1=R0+0.001*i*(R1-R0)
+	x1=R0+0.01*i*(R1-R0)
 	p=Point(x1,theta0)
 	F1=u(p.x(), p.y())[0]
 	F2=u(p.x(), p.y())[1]
@@ -105,6 +107,15 @@ for i in range (100):
 	data_y1.append(F1)
 	data_y2.append(F2)
 	data_y3.append(F3)
+	G.write(str(x1))
+	G.write(' ')
+	G.write(str(-0.01-F1))
+	G.write('\n ')
+    #G.write(' ')
+    #G.write('\n')
+
+G.close()
+
 
 
 fig=plt.figure(figsize=(8,6), facecolor='pink', frameon=True)

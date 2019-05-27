@@ -47,10 +47,25 @@ def energy(X0,enthalpy0):
                     break
     return X0,result2,result1
 
+radii = []
+enth = []
+
+F1=open('H.txt','r')
+
+lines = F1.read().split()
+
+F1.close()
+
+for i in range(0, len(lines)-1, 2):
+    enth.append(float(lines[i+1]))
+    radii.append(float(lines[i]))
+
+
+
 G = open('Table.txt', 'w')
-for i in range(N):
-    X=0.3+i*R0/N
-    enthalpy0=f.subs(x,X)
+for i in range(len(radii)):
+    X=radii[i]
+    enthalpy0=enth[i]-0.01
     RES=energy(X,enthalpy0)
     a=[]
     a.append(RES[0])

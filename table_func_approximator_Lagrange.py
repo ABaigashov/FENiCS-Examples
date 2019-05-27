@@ -16,7 +16,7 @@ def approximator(f):
     # Создание списков для абсциссы и ординаты
     abscissa = []
     ordinate = []
-    for i in range(0, len(lines)-1, 2):
+    for i in range(0, len(lines)-2, 3):
         abscissa.append(float(lines[i]))
         ordinate.append(float(lines[i+1]))
 
@@ -38,5 +38,6 @@ def approximator(f):
 
     return f_code
 
-#
-# print(approximator(f))
+f = open('Table.txt', 'r')
+
+print(approximator(f))
