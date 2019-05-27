@@ -8,7 +8,7 @@ import sympy as sym
 
 R0=0.0001
 
-R1=10
+R1=30
 
 r0=0.5
 
@@ -47,6 +47,8 @@ bcs=[bc_R]
 
 f = Expression('x[0]*x[0]<=0.25 ? -10*(0.25-x[0]*x[0]) : 0', degree=2)
 
+f00=Expression('x[0]*x[0]<=0.25 ? -2*(0.25-x[0]*x[0]) : 0', degree=2)
+
 f0=Expression('1/(x[0])', degree=2)
 
 f1=Expression('x[0]*x[0]*sin(x[1])',degree=2)
@@ -60,8 +62,8 @@ F=f1*u_1.dx(0)*v_1.dx(0)*dx+f1*f0*f0*u_1.dx(1)*v_1.dx(1)*dx \
 +f2*u_2.dx(0)*v_2.dx(0)*dx+f2*f0*f0*u_2.dx(1)*v_2.dx(1)*dx \
 +f3*u_3.dx(0)*v_3.dx(0)*dx+f3*f0*f0*u_3.dx(1)*v_3.dx(1)*dx \
 -f3*v_3*u_1.dx(0)*u_1.dx(0)*dx \
--f1*f*u_2*u_2*exp(-2*u_1)*v_1*dx-f2*u_2*u_2*u_2*exp(-2*u_1)*f*v_2*dx \
--f3*f*u_2*u_2*exp(-2*u_1)*v_3*dx
+-f1*(f+3*f00)*u_2*u_2*exp(-2*u_1)*v_1*dx-f2*u_2*u_2*u_2*exp(-2*u_1)*4*f00*v_2*dx \
+-f3*2*f00*u_2*u_2*exp(-2*u_1)*v_3*dx
 
 #F=f2*u_1.dx(0)*v_1.dx(0)*dx+f2*f1*f1*u_1.dx(1)*v_1.dx(1)*dx \
 #-f2*v_1*u_2.dx(0)*u_1.dx(0)*dx \
