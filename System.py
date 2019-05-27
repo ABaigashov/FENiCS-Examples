@@ -95,7 +95,7 @@ data_y2=[]
 
 data_y3=[]
 
-G = open('H.txt', 'w')
+G = open('data/H.txt', 'w')
 
 for i in range (100):
 	x1=R0+0.01*i*(R1-R0)

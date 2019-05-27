@@ -17,7 +17,7 @@ density = []
 pressure = []
 enthalpy = []
 
-F = open('EOS.txt', 'r')
+F = open('data/EOS.txt', 'r')
 
 lines = F.read().split()
 
@@ -47,7 +47,7 @@ def energy(X0,enthalpy0):
                     break
     return X0,result2,result1
 
-G = open('Table.txt', 'w')
+G = open('data/Table.txt', 'w')
 for i in range(N):
     X=0.3+i*R0/N
     enthalpy0=f.subs(x,X)

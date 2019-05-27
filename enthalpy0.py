@@ -17,7 +17,7 @@ density = []
 pressure = []
 enthalpy = []
 
-F = open('EOS.txt', 'r')
+F = open('data/EOS.txt', 'r')
 
 lines = F.read().split()
 
