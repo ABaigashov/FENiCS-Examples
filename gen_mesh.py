@@ -8,7 +8,7 @@ domain =  mshr.Rectangle(fenics.Point(0., 0.), fenics.Point(5., 5.)) \
          + mshr.Circle(fenics.Point(4, 2), 1.25)
 
 # generate mesh and determination of the Function Space
-mesh = mshr.generate_mesh(domain, 32)
+mesh = mshr.generate_mesh(domain, 164)
 
 V = fenics.FunctionSpace(mesh, 'P', 1)
 
