@@ -14,7 +14,7 @@ R0=10
 
 domain=Sphere(fen.Point(0,0,0),R)
 
-mesh=generate_mesh(domain, 32)
+mesh=generate_mesh(domain, 64)
 
 V = fen.FunctionSpace(mesh, 'P', 1)
 
@@ -23,7 +23,7 @@ def boundary(x, on_boundary):
 
 bc =fen.DirichletBC(V, fen.Constant(0), boundary)
 
-f = fen.Expression('x[0]*x[0]+x[1]*x[1]+x[2]*x[2]<=100 ? -1 + (x[0]*x[0] + x[1]*x[1]+x[2]*x[2])/100 : 0', degree=3)
+f = fen.Expression('x[0]*x[0]+x[1]*x[1]+x[2]*x[2]<=100 ? -1 + (x[0]*x[0] + x[1]*x[1]+x[2]*x[2])/100 : 0; x[0]*x[0]+x[1]*x[1]+x[2]*x[2]<=50 ? -1 + (x[0]*x[0] + x[1]*x[1]+x[2]*x[2])/50 : 1', degree=3)
 
 u = fen.Function(V)
 v = fen.TestFunction(V)
