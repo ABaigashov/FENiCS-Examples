@@ -5,6 +5,7 @@ import sympy as smp
 from enthalpy0 import generate_src_function
 import matplotlib.pyplot as plt
 
+
 # solve -laplace(u) = f in [0, 1]^2 with homog. Dirichlet boundary conditions
 # and funny 'numerical' rhs
 
@@ -12,7 +13,7 @@ import matplotlib.pyplot as plt
 
 domain=Rectangle(Point(0,0), Point(10, 10))
 
-mesh=generate_mesh(domain, 32)
+mesh=generate_mesh(domain, 128)
 
 
 # source term calculation
@@ -43,6 +44,7 @@ g_values=np.zeros(n)
 Name = 'data/EOS.txt'
 x=smp.Symbol('x')
 y=smp.Symbol('y')
+
 g0=0.45
 
 R0=5
@@ -134,7 +136,7 @@ plt.show()
 
 # variational problem definition
 
-'''
+
 V = FunctionSpace(mesh, 'CG', 2)
 
 u = TrialFunction(V)
@@ -148,5 +150,5 @@ u = Function(V)
 solve(a == L, u, bc)
 
 plot(u, title='Solution')
-'''
+
 #interactive()

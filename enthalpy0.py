@@ -2,7 +2,6 @@ import numpy as np
 import sympy as smp
 import math
 
-
 def generate_src_function(lines,enthalpy0,X0,Y0):
 
     density = []
