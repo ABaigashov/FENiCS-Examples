@@ -11,13 +11,49 @@ import matplotlib.pyplot as plt
 
 #mesh = RectangleMesh(-1,-1,1,1,10,10,'right')
 
+def numer_src_function(Name1,Name2,n):
+    # source term calculation
+
+    f_values = np.zeros(n)
+
+    g_values=np.zeros(n)
+
+    G = open(Name1, 'r')
+
+    lines = G.read().split()
+
+    G.close()
+
+    F1=open(Name2,'r')
+
+    lines1 = F1.read().split()
+
+    F1.close()
+
+    x = []
+    y= []
+    enth = []
+
+    for i in range(0, len(lines1)-2, 3):
+        enth.append(float(lines1[i+2]))
+        x.append(float(lines1[i]))
+        y.append(float(lines1[i+1]))
+
+    for i in range(n):
+        enthalpy0=enth[i]
+        result=generate_src_function(lines,enthalpy0,x[i],y[i])
+        f_values[i]=result[2]
+        g_values[i]=result[3]
+
+    return f_values, g_values
+
+'''
 domain=Rectangle(Point(0,0), Point(10, 10))
 
-mesh=generate_mesh(domain, 128)
+mesh=generate_mesh(domain, 16)
 
-
-# source term calculation
 F = FunctionSpace(mesh, 'CG', 1)  # so that dofs are only in mesh vertices
+
 n = F.dim()
 
 print(n)
@@ -30,38 +66,28 @@ f = Function(F)
 
 f1 = Function(F)
 
-# dofmap approach
+    # dofmap approach
 F_dof_coordinates = F.tabulate_dof_coordinates().reshape(n,d)
 
 F_dof_coordinates.resize((n, d))
 F_dof_x = F_dof_coordinates[:, 0]
 F_dof_y = F_dof_coordinates[:, 1]
 
-f_values = np.zeros(n)
-
-g_values=np.zeros(n)
-
-Name = 'data/EOS.txt'
-x=smp.Symbol('x')
-y=smp.Symbol('y')
-
 g0=0.45
 
 R0=5
 
+x=smp.Symbol('x')
+y=smp.Symbol('y')
+
 g=g0*(1-x*x/(R0*R0))
+
+
 
 N=10
 
 X0=1
 Y0=0
-
-G = open(Name, 'r')
-
-lines = G.read().split()
-
-G.close()
-
 
 G = open('data/H.txt', 'w')
 for j in range(n):
@@ -83,47 +109,27 @@ for j in range(n):
 
 G.close()
 
-F1=open('data/H.txt','r')
+Name1='data/EOS.txt'
+Name2='data/H.txt'
 
-lines1 = F1.read().split()
+result=numer_src_function(Name1, Name2)
 
-F1.close()
-
-x = []
-y= []
-enth = []
-
-for i in range(0, len(lines1)-2, 3):
-    enth.append(float(lines1[i+2]))
-    x.append(float(lines1[i]))
-    y.append(float(lines1[i+1]))
-
-for i in range(n):
-    enthalpy0=enth[i]
-    result=generate_src_function(lines,enthalpy0,F_dof_x[i],F_dof_y[i])
-    f_values[i]=result[2]
-    g_values[i]=result[3]
+print(result[0][104])
 
 
-#f_values = abs(F_dof_x + F_dof_y)
-f.vector()[:] = f_values
-f1.vector()[:] = g_values
-plot(f, title='Source term')
+f.vector()[:] = result[0]
+f1.vector()[:] = result[1]
 
 
-print(F_dof_coordinates[n-1])
-print(f_values[n-1])
-print(g_values[n-1])
 
 
 fig=plt.figure(figsize=(8,6), facecolor='pink', frameon=True)
-plt.scatter(F_dof_x,f_values)
-plt.scatter(F_dof_x,g_values)
+plt.scatter(F_dof_x,result[0])
+plt.scatter(F_dof_x,result[1])
 plt.savefig('results/Src.png')
 plt.show()
 
-
-
+'''
 # # vertex to dofmap approach
 # vertex_values = np.zeros(mesh.num_vertices())
 # for vertex in vertices(mesh):
@@ -136,8 +142,8 @@ plt.show()
 
 # variational problem definition
 
-
-V = FunctionSpace(mesh, 'CG', 2)
+'''
+V = FunctionSpace(mesh, 'CG', 1)
 
 u = TrialFunction(V)
 v = TestFunction(V)
@@ -150,5 +156,5 @@ u = Function(V)
 solve(a == L, u, bc)
 
 plot(u, title='Solution')
-
+'''
 #interactive()
