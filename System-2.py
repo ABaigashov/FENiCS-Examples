@@ -36,9 +36,9 @@ F_dof_coordinates.resize((n, d))
 F_dof_x = F_dof_coordinates[:, 0]
 F_dof_y = F_dof_coordinates[:, 1]
 
-g0=0.50
+g0=0.45
 
-R0=5.0
+R0=3
 
 x=sym.Symbol('x')
 y=sym.Symbol('y')
@@ -97,7 +97,7 @@ u_R=Expression(('0','0'),degree=2)
 
 g=Constant(0.0)
 
-P1 = FiniteElement('P', triangle, 1)
+P1 = FiniteElement('P', triangle, 2)
 element = MixedElement([P1, P1])
 V = FunctionSpace(mesh, element)
 
@@ -139,11 +139,11 @@ f2=Expression('x[0]*x[0]*x[0]',degree=2)
 f3=Expression('x[0]',degree=2)
 
 F=-f1*u_1.dx(0)*v_1.dx(0)*dx-f1*f0*f0*u_1.dx(1)*v_1.dx(1)*dx \
-+f1*v_1*u_1.dx(0)*u_2.dx(0)*dx \
+-f1*v_1*u_1.dx(0)*u_2.dx(0)*dx \
 -f2*u_2.dx(0)*v_2.dx(0)*dx-f2*f0*f0*u_2.dx(1)*v_2.dx(1)*dx \
-+f2*v_2*u_2.dx(0)*u_2.dx(0)*dx \
--f1*4*(np.pi)*(f+3*f00)*exp(2*u_2-2*u_1)*v_1*dx \
--f2*exp(2*u_2-2*u_1)*4*4*(np.pi)*f00*v_2*dx
+-f2*v_2*u_2.dx(0)*u_2.dx(0)*dx \
+-f1*4*(np.pi)*(f*0+3*f00)*exp(2*u_2-2*1*u_1)*v_1*dx \
+-f2*exp(2*u_2-2*1*u_1)*4*4*(np.pi)*f00*v_2*dx
 
 #F=f2*u_1.dx(0)*v_1.dx(0)*dx+f2*f1*f1*u_1.dx(1)*v_1.dx(1)*dx \
 #-f2*v_1*u_2.dx(0)*u_1.dx(0)*dx \
@@ -187,7 +187,7 @@ plt.savefig('results/Profile2.png')
 plt.show()
 
 
-for k in range(3):
+for k in range(8):
 
     p0=Point(0.0001,0)
     nu0=u(p0.x(), p0.y())[0]
@@ -236,8 +236,8 @@ for k in range(3):
     +f1*v_1*u_1.dx(0)*u_2.dx(0)*dx \
     -f2*u_2.dx(0)*v_2.dx(0)*dx-f2*f0*f0*u_2.dx(1)*v_2.dx(1)*dx \
     +f2*v_2*u_2.dx(0)*u_2.dx(0)*dx \
-    -f1*4*(np.pi)*(f+3*f00)*exp(2*u_2-2*u_1)*v_1*dx \
-    -f2*exp(2*u_2-2*u_1)*4*4*(np.pi)*f00*v_2*dx
+    -f1*4*(np.pi)*(f*0+3*f00)*exp(2*u_2-1*2*u_1)*v_1*dx \
+    -f2*exp(2*u_2-2*1*u_1)*4*4*(np.pi)*f00*v_2*dx
 
     solve(F == 0, u, bcs)
 
