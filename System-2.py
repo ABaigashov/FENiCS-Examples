@@ -205,9 +205,9 @@ f3=Expression('x[0]',degree=2)
 
 F=-f1*u_1.dx(0)*v_1.dx(0)*dx-f1*f0*f0*u_1.dx(1)*v_1.dx(1)*dx \
 -f2*u_2.dx(0)*v_2.dx(0)*dx-f2*f0*f0*u_2.dx(1)*v_2.dx(1)*dx \
--f1*v_1*u_1.dx(0)*u_2.dx(0)*dx-f1*f0*f0*v_1*u_1.dx(1)*u_2.dx(1)*dx \
--f2*v_2*u_2.dx(0)*u_2.dx(0)*dx-f2*f0*f0*v_2*u_2.dx(1)*u_2.dx(1)*dx \
--f1*4*(np.pi)*(f+3*f00)*exp(2*u_2-1*1.3*u_1)*v_1*dx \
++f1*v_1*u_1.dx(0)*u_2.dx(0)*dx+f1*f0*f0*v_1*u_1.dx(1)*u_2.dx(1)*dx \
++f2*v_2*u_2.dx(0)*u_2.dx(0)*dx+f2*f0*f0*v_2*u_2.dx(1)*u_2.dx(1)*dx \
+-f1*4*(np.pi)*(f+3*f00)*exp(2*u_2-2*u_1)*v_1*dx \
 -f2*exp(2*u_2-2*u_1)*4*4*(np.pi)*f00*v_2*dx
 
 
@@ -318,9 +318,9 @@ for k in range(8):
     f00.vector()[:] = result[1]
 
     F=-f1*u_1.dx(0)*v_1.dx(0)*dx-f1*f0*f0*u_1.dx(1)*v_1.dx(1)*dx \
-    +f1*v_1*u_1.dx(0)*u_2.dx(0)*dx \
     -f2*u_2.dx(0)*v_2.dx(0)*dx-f2*f0*f0*u_2.dx(1)*v_2.dx(1)*dx \
-    +f2*v_2*u_2.dx(0)*u_2.dx(0)*dx \
+    +f1*v_1*u_1.dx(0)*u_2.dx(0)*dx+f1*f0*f0*v_1*u_1.dx(1)*u_2.dx(1)*dx \
+    +f2*v_2*u_2.dx(0)*u_2.dx(0)*dx+f2*f0*f0*v_2*u_2.dx(1)*u_2.dx(1)*dx \
     -f1*4*(np.pi)*(f+3*f00)*exp(2*u_2-2*u_1)*v_1*dx \
     -f2*exp(2*u_2-2*u_1)*4*4*(np.pi)*f00*v_2*dx
 
