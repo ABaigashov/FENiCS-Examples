@@ -38,6 +38,7 @@ def approximator(f):
 
     return f_code
 
-
+# from table_func_approximator import approximator
+# help(approximator)
 # f = open('data/table_func.txt', 'r')
 # print(approximator(f))

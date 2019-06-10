@@ -9,19 +9,22 @@ import numpy as np
 # аналитически заданной граничной функцией и произвольно сгенерированной сеткой.
 # Вывод решения осуществляется в двух направлениях vtkfile и Ploting pylab
 
+# Начальные параметры для решения задачи
 R=1
 R0=0.1
 rho0=0.1
 
+# Генерирование области, в которой ищется решение задачи и сетки внутри облатси
 domain=Circle(Point(0,0),R)
 mesh=generate_mesh(domain, 32)
 
+# Графический вывод сгенерированной сетки
 plot(mesh)
 
+# Генерирование пространства функций на сгенерированной сетке
 V = FunctionSpace(mesh, 'P', 1)
 
 # Define boundary condition
-
 def boundary(x, on_boundary):
 	return on_boundary
 

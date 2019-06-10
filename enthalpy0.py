@@ -29,10 +29,12 @@ def generate_src_function(lines,enthalpy0,X0,Y0):
 
     Если энтальпия меньше нуля, то это означает, что плотность и давление равны нулю.
     """
+    # Создание массивов
     density = []
     pressure = []
     enthalpy = []
 
+    # Заполнение массовов из считанных данных
     for i in range(0, len(lines)-2, 3):
         enthalpy.append(float(lines[i]))
         density.append(float(lines[i+1]))
