@@ -39,7 +39,6 @@ def numer_src_function(Name1,Name2,n):
 
     #открытие файла с рравнением состояния и считывание
     F1=open(Name2,'r')
-
     lines1 = F1.read().split()
 
     F1.close()
@@ -47,6 +46,7 @@ def numer_src_function(Name1,Name2,n):
     x = []
     y= []
     enth = []
+
     #считывание х- и y-координат узлов и значения энтальпии
     for i in range(0, len(lines1)-2, 3):
         enth.append(float(lines1[i+2]))
