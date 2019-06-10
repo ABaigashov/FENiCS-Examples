@@ -3,21 +3,22 @@ from fenics import *
 from mshr import *
 import numpy as np
 
+# Пример решения нелинейного уравнения Пуассона,
+# записанный без использования встроенных операторов интегрирования и
+# дифференцирования вариационной задачив прямоугольной области с
+# аналитически заданной граничной функцией и произвольно сгенерированной сеткой.
+# Вывод решения осуществляется в vtkfile 
+
 R=50
-
 R0=10
-
 rho0=0.1
-
 tol=1E-14
 
 #mesh=RectangleMesh(Point(0,0), Point(1, np.pi*2), 50, 50, 'right/left')
 domain=Rectangle(Point(0.0001,0), Point(1, np.pi))
-
 mesh=generate_mesh(domain, 64)
 
 u_R=Constant(0)
-
 g=Constant(0.0)
 
 V = FunctionSpace(mesh, 'P', 1)

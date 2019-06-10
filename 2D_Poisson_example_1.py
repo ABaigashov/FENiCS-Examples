@@ -1,5 +1,9 @@
 import fenics as fen
 
+# Пример решения уравнения Пуассона в прямоугольной области с
+# аналитически заданной граничной функцией.
+# Вывод решения осуществляется в двух направлениях vtkfile и Ploting pylab
+
 # Create mesh and define function space
 mesh = fen.UnitSquareMesh(8, 8)
 V = fen.FunctionSpace(mesh, 'P', 1)

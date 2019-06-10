@@ -1,5 +1,3 @@
-
-
 from fenics import *
 from mshr import *
 import numpy as np

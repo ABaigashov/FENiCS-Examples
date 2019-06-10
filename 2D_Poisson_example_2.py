@@ -2,6 +2,12 @@ from fenics import *
 import sympy as sym
 import mshr
 
+
+# Пример решения нелинейного уравнения Пуассона в прямоугольной области с
+# аналитически заданной граничной функцией и произвольно сгенерированной сеткой.
+# Вывод решения осуществляется в двух направлениях vtkfile и Ploting pylab
+
+
 def q(u):
     "Return nonlinear coefficient"
     return 1 + u**2
