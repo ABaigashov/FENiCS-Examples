@@ -2,12 +2,11 @@ from fenics import *
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-import mshr
 
 #-------------Create DOLPHIN mesh and define function space----------
-domain = Rectangle(Point(0, 0), Point(1, 1))
-mesh = generate_mesh(domain, 64)
-ff = MeshFunction('size_t', mesh, 0)
+mesh = UnitSquareMesh (32, 32)
+V = FunctionSpace (mesh, 'Lagrange', 1)
+ff = FacetFunction ('size_t', mesh , 0)
 V = FunctionSpace(mesh, 'CG', 2)
 
 #------iterate through the facets and mark each if on a boundary :----------
@@ -73,6 +72,5 @@ p = ax.triplot(x, y, t, '-', color='k', lw=0.2, alpha=0.4)
 # cbar = colorbar(c, cax=cax)
 
 #-----------Output in the file-------------------
-for ext in ["png", "pdf"]:
-    print("saving 3_1_Poisson_equation.%s" % (ext,))
-    plt.savefig("3_1_Poisson_equation.%s" % (ext,), bbox_inches="tight")
+for ext in ["png"]:
+    plt.savefig("results/3_1_Poisson_equation.%s" % (ext,), bbox_inches="tight")
