@@ -6,7 +6,7 @@ import mshr
 domain = Rectangle(Point(0, 0), Point(1, 1))
 mesh = generate_mesh(domain, 64)
 sub_domains = MeshFunction('size_t', mesh, 0)
-
+ 
 #-------------Taylor - Hood element-------------
 V = VectorFunctionSpace(mesh, 'BDFM', 2)
 Q = FunctionSpace(mesh, 'BDFM', 1)
