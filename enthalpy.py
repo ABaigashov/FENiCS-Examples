@@ -2,14 +2,39 @@ import numpy as np
 import sympy as smp
 import math
 
-def generate_src_function(lines,f,X0,Y0):
-    x=smp.Symbol('x')
-    y=smp.Symbol('y')
+
+def generate_src_function(lines,enthalpy0,X0,Y0):
+    """
+    Функция для расчета плотности и давления по энтальпии.
+
+    Входные аргументы:
+    lines - список, считанный из уравнения состояния в формате
+    энтальпия - плотность энергии - давление (значения должны идти в столбцах
+    в порядке возрастания)
+
+    enthalpy0 - значение энтальпии, для которого надо рассчитать плотность и давление.
+
+    X0, Y0 - координаты точки, в которых считается энтальпия.
+    P.S. Вообще, надо будет переписать эту функцию немного, ведь координаты точек здесь не нужны.
+    Но сначала мне казалось, что это нелишне.
+
+    Выходной результат: X0, Y0, плотность энергии, давление
+
+    Алгоритм вычисления состоит в следующем. Функция находит наименьшее значение энтальпии
+    в списке, которое больше заданного. Предыдущее значение в списке тогда будет меньше
+    заданного. Тогда значение плотности (давления) для заданной энтальпии заключено
+    между плотностями (давлениями), соответствующими табличным значениям энтальпии.
+    Поскольку логарифм плотности (давления) с хорошей точностью линейно зависит энтальпии,
+    то путем простой аппроксимации можно найти плотоость и давление для заданной энтальпии.
+
+    Если энтальпия меньше нуля, то это означает, что плотность и давление равны нулю.
+    """
+    # Создание массивов
     density = []
     pressure = []
     enthalpy = []
 
-
+    # Заполнение массовов из считанных данных
     for i in range(0, len(lines)-2, 3):
         enthalpy.append(float(lines[i]))
         density.append(float(lines[i+1]))
@@ -30,48 +55,41 @@ def generate_src_function(lines,f,X0,Y0):
                         result2=density[j-1]+(math.exp(enthalpy0)-math.exp(enthalpy[j-1]))*K2
                         break
         return X0,Y0,result2,result1
-
-    enthalpy0=f.subs(x,X0)
-    enthalpy0=enthalpy0.subs(y,Y0)
     result=energy(X0,Y0,enthalpy0)
     return result
 
+
+
 '''
-Name = 'data/EOS.txt'
-x=smp.Symbol('x')
-y=smp.Symbol('y')
-f0=0.45
-
-R0=5
-
-f=f0*(1-x*x/(R0*R0))
-
-N=10
-
-X0=1
-Y0=0
-
-F = open(Name, 'r')
+F = open('data/EOS.txt', 'r')
 
 lines = F.read().split()
 
 F.close()
 
-bum=generate_src_function(lines,f,X0,Y0)
+x = []
+y= []
+enth = []
 
-print(bum)
+F1=open('data/H1.txt','r')
 
-X1=2
-Y1=1
-bum=generate_src_function(lines,f,X1,Y1)
-print(bum)
-'''
+lines1 = F1.read().split()
 
-'''
-G = open('data/Table.txt', 'w')
-for i in range(N):
-    X=0.001+i*R0/N
-    RES=generate_src_function(lines,f,X,Y0)
+F1.close()
+
+for i in range(0, len(lines1)-2, 3):
+    enth.append(float(lines1[i+2]))
+    x.append(float(lines1[i]))
+    y.append(float(lines1[i+1]))
+
+
+
+G = open('data/Table1.txt', 'w')
+for i in range(len(x)):
+    X=x[i]
+    Y=y[i]
+    enthalpy0=enth[i]
+    RES=generate_src_function(lines,enthalpy0,X,Y)
     a=[]
     a.append(RES[0])
     a.append(RES[1])
