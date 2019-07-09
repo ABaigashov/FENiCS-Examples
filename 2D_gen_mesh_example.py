@@ -13,8 +13,8 @@ mesh = mshr.generate_mesh(domain, 164)
 V = fenics.FunctionSpace(mesh, 'P', 1)
 
 # determination element of the Function Space
-u = fenics.Function(V)  
-
+u = fenics.Function(V)
+  
 
 #--------------------------Ploting pylab------------------------
 #get array componets and triangulation :
