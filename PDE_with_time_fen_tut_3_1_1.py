@@ -1,9 +1,6 @@
 from fenics import *
 import numpy as np
 
-T = 20.0 # final time
-num_steps = 100 # number of time steps
-dt = T/num_steps # time step size
 alpha = 30 # parameter alpha
 beta = 12 # parameter beta
 
@@ -35,7 +32,12 @@ a, L = lhs(F), rhs(F)
 
 # Time-stepping
 u = Function(V)
+
+T = 20.0 # final time
+num_steps = 100 # number of time steps
+dt = T/num_steps # time step size
 t = 0
+
 for n in range(num_steps):
     # Update current time
     t += dt
